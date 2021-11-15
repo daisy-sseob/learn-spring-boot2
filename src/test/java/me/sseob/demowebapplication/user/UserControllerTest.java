@@ -28,9 +28,9 @@ public class UserControllerTest {
 	
 	@Test
 	public void hello() throws Exception{
-		mockMvc.perform(MockMvcRequestBuilders.get("/hello"))
+		mockMvc.perform(MockMvcRequestBuilders.get("/helloUser"))
 				.andExpect(status().isOk())
-				.andExpect(content().string("hello"))
+				.andExpect(content().string("helloUser"))
 		;
 	}
 	
