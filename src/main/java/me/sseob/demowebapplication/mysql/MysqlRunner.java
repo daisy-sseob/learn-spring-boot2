@@ -1,4 +1,4 @@
-package me.sseob.demowebapplication.h2;
+package me.sseob.demowebapplication.mysql;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -11,20 +11,16 @@ import java.sql.Connection;
 import java.sql.Statement;
 
 @Component
-public class H2Runner implements ApplicationRunner {
+public class MysqlRunner implements ApplicationRunner {
 
-	@Autowired
-	DataSource dataSource;
+	private final DataSource dataSource;
+	private final JdbcTemplate jdbcTemplate;
 
-	@Autowired
-	JdbcTemplate jdbcTemplate;
-	
-	/*
-		table 생성하기
-		h2 console로 확인하자 !
-		
-		mysql 사용함에 따라 excute method들 주석처리 
-	 */
+	public MysqlRunner(DataSource dataSource, JdbcTemplate jdbcTemplate) {
+		this.dataSource = dataSource;
+		this.jdbcTemplate = jdbcTemplate;
+	}
+
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		
@@ -32,9 +28,9 @@ public class H2Runner implements ApplicationRunner {
 		try(Connection connection = dataSource.getConnection()) {
 			Statement statement = connection.createStatement();
 			String sql = "CREATE TABLE USER(ID INTEGER NOT NULL, name VARCHAR(255), PRIMARY KEY (ID));";
-//			statement.executeUpdate(sql);
+			statement.executeUpdate(sql);
 		}
 
-//		jdbcTemplate.execute("INSERT INTO USER VALUES (1,'sseob')");
+		jdbcTemplate.execute("INSERT INTO USER VALUES (1,'sseob')");
 	}
 }
