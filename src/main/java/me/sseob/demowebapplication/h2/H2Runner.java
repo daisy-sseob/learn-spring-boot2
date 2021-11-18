@@ -22,6 +22,7 @@ public class H2Runner implements ApplicationRunner {
 	/*
 		table 생성하기
 		h2 console로 확인하자 !
+		
 	 */
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
