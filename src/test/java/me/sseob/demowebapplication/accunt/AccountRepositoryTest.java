@@ -1,5 +1,6 @@
 package me.sseob.demowebapplication.accunt;
 
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,15 +9,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.sql.DataSource;
-
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 @RunWith(SpringRunner.class)
-@DataJpaTest
+@DataJpaTest //@SpringBooTest 를 사용하게 될 경우 모든 Bean을 등록하게 되므로 Postgres database를 사용하게 된다. 
 public class AccountRepositoryTest {
 
 	@Autowired
@@ -30,12 +29,20 @@ public class AccountRepositoryTest {
 	
 	@Test
 	public void di() throws SQLException {
+
+		Account account = new Account();
+		account.setUsername("sseob");
+		account.setPassword("1234");
+
+		Account newAcount = accountRepository.save(account);
+
+		assertThat(account).isNotNull();
+
+		Account byUsername = accountRepository.findByUsername(newAcount.getUsername());
+		assertThat(byUsername.getUsername()).isEqualTo("sseob");
 		
-		try (Connection connection = dataSource.getConnection() ){
-			DatabaseMetaData metaData = connection.getMetaData();
-			System.out.println(metaData.getURL());
-			System.out.println(metaData.getDriverName());
-			System.out.println(metaData.getUserName());
-		}
+		Account nullableUsername = accountRepository.findByUsername("sseobbbb");
+		assertThat(nullableUsername).isNull();
+
 	}
 }
