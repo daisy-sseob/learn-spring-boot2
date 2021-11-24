@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -38,11 +39,10 @@ public class AccountRepositoryTest {
 
 		assertThat(account).isNotNull();
 
-		Account byUsername = accountRepository.findByUsername(newAcount.getUsername());
-		assertThat(byUsername.getUsername()).isEqualTo("sseob");
+		Optional<Account> byUsername = accountRepository.findByUsername(newAcount.getUsername());
+		assertThat(byUsername).isNotEmpty();
 		
-		Account nullableUsername = accountRepository.findByUsername("sseobbbb");
-		assertThat(nullableUsername).isNull();
-
+		Optional<Account> nullableUsername = accountRepository.findByUsername("sseobbbb");
+		assertThat(nullableUsername).isEmpty();
 	}
 }
