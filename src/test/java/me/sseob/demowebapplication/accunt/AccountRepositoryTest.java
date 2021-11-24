@@ -9,6 +9,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.sql.DataSource;
 
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.SQLException;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
@@ -25,7 +29,13 @@ public class AccountRepositoryTest {
 	AccountRepository accountRepository;
 	
 	@Test
-	public void di() {
+	public void di() throws SQLException {
 		
+		try (Connection connection = dataSource.getConnection() ){
+			DatabaseMetaData metaData = connection.getMetaData();
+			System.out.println(metaData.getURL());
+			System.out.println(metaData.getDriverName());
+			System.out.println(metaData.getUserName());
+		}
 	}
 }
