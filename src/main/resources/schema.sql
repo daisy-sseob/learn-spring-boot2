@@ -1,4 +1,5 @@
--- test scope에서 hibernate를 통해서 스키마를 생성하지 않아도 이 파일을 통해 스키마를 생성하기 때문에 테스트를 무리없이 진행할 수 있다.
+-- 이 파일을 통해 database 초기화가 진행된다. test scope에서는 현재 인메모리 database를 사용하고 있는데 
+-- spring.jpa.hibernate.ddl-auto=validate 옵션으로 테스트할 경우 스키마가 없어서 에러가 발생하지만 아래 스키마 초기화 과정을 이용해 에러를 방지한다.
 drop table if exists account CASCADE 
 drop sequence if exists hibernate_sequence
 create sequence hibernate_sequence start with 1 increment by 1
