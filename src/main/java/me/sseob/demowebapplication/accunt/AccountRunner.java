@@ -13,8 +13,7 @@ public class AccountRunner implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-
-		Account hyunseob = accountService.createAccount("hyunseob", "1234");
+		Account hyunseob = accountService.createAccount("sseob", "1234");
 		System.out.println("account runner create user: " + hyunseob);
 	}
 }
