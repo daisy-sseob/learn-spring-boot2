@@ -71,4 +71,15 @@ public class Account {
 	public int hashCode() {
 		return Objects.hash(id, username, password);
 	}
+
+	@Override
+	public String toString() {
+		return "Account{" +
+				"id=" + id +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", email='" + email + '\'' +
+				", active=" + active +
+				'}';
+	}
 }

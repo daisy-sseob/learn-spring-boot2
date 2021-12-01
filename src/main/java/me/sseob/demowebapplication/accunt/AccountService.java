@@ -1,6 +1,5 @@
 package me.sseob.demowebapplication.accunt;
 
-import javassist.Loader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -32,7 +31,7 @@ public class AccountService implements UserDetailsService {
 		Account account = new Account();
 		account.setUsername(username);
 		account.setPassword(password);
-		return account; 
+		return accountRepository.save(account); 
 	}
 
 	@Override
