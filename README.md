@@ -7,7 +7,7 @@
 - 자동설정을 통해 사용하기 편리해진 기능들에 대해서 알아봄.
   - cors, jpa auto configuration, database설정, hateoas 등등 
 
-> docker를 이용해 postgres를 설치한다.
+> DB는 postgres를 사용. docker를 이용해 postgres를 설치한다.
 ```xml
 $ docker run -p 5432:5432 -e POSTGRES_PASSWORD=1234 -e POSTGRES_USER=sseob -e POSTGRES_DB=springboot --name postgres_boot -d postgres
 - bash로 접속: docker exec -i -t postgres_boot
