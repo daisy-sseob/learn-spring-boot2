@@ -12,3 +12,4 @@
 $ docker run -p 5432:5432 -e POSTGRES_PASSWORD=1234 -e POSTGRES_USER=sseob -e POSTGRES_DB=springboot --name postgres_boot -d postgres
 - bash로 접속: docker exec -i -t postgres_boot
 ```
+
