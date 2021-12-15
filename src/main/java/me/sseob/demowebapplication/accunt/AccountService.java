@@ -10,11 +10,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-
 
 /*
 	UserDetailsService type의 Bean이 등록 되어있어야 Spring boot 가 자동 설정해주는 user 정보에게서 자유로워 질 수 있다.
