@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -41,11 +42,11 @@ public class AccountService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Optional<Account> byUsername = accountRepository.findByUsername(username);
 		Account account = byUsername.orElseThrow(() -> new UsernameNotFoundException(username));
-		return new User(account.getUsername(), account.getPassword(), authoritest());
+		return new User(account.getUsername(), account.getPassword(), authorites());
 	}
 
 	//권한 심플하게 만듦
-	private Collection<? extends GrantedAuthority> authoritest() {
-		return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+	private Collection<? extends GrantedAuthority> authorites() {
+		return List.of(new SimpleGrantedAuthority("ROLE_USER"));
 	}
 }
